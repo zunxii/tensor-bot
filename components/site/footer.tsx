@@ -21,7 +21,7 @@ const socialLinks = [
     ),
   },
   {
-    label: "X / Twitter",
+    label: "X",
     href: "#",
     icon: (
       <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
@@ -33,30 +33,30 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative z-10">
-      <Container className="pb-10 pt-4">
-        <div className="grid gap-10 border-t border-slate-200/70 py-10 lg:grid-cols-[1.15fr_0.85fr_0.85fr_0.85fr_0.85fr]">
+    <footer className="relative z-10 border-t border-slate-200/80 bg-white/40 pt-12 pb-8">
+      <Container>
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.8fr]">
           <div>
-            <Link href="#" className="flex items-center gap-3">
-              <div className="flex h-7 w-7 items-center justify-center rounded-[8px] bg-slate-950 text-sm font-semibold text-white shadow-md shadow-slate-900/20">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-slate-950 text-[13px] font-semibold text-white shadow-md">
                 T
               </div>
-              <span className="text-[15px] font-semibold tracking-[-0.02em] text-slate-900">
+              <span className="text-[16px] font-semibold tracking-[-0.02em] text-slate-950">
                 Tensor-Bot
               </span>
             </Link>
 
-            <p className="mt-4 max-w-[220px] text-[14px] leading-7 text-slate-500">
-              A chatbot infrastructure for modern businesses.
+            <p className="mt-4 max-w-[240px] text-[14px] leading-6 text-slate-500">
+              AI chatbot infrastructure for business websites.
             </p>
 
-            <div className="mt-5 flex gap-2.5 text-slate-400">
+            <div className="mt-5 flex gap-2">
               {socialLinks.map((s) => (
                 <Link
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white shadow-[0_4px_12px_rgba(15,23,42,0.04)] transition hover:border-slate-300 hover:text-slate-600"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/80 bg-white text-slate-500 transition hover:border-slate-300 hover:text-slate-950"
                 >
                   {s.icon}
                 </Link>
@@ -64,26 +64,41 @@ export function Footer() {
             </div>
           </div>
 
-          {[
-            { title: "Product",   items: ["Platform", "Use cases", "Pricing", "Changelog"] },
-            { title: "Resources", items: ["Docs", "Guides", "API Reference", "Help center"] },
-            { title: "Company",   items: ["About", "Careers", "Contact", "Privacy"] },
-            { title: "Legal",     items: ["Terms", "Security", "Privacy Policy"] },
-          ].map((col) => (
-            <div key={col.title}>
-              <div className="text-[14px] font-semibold text-slate-900">{col.title}</div>
-              <div className="mt-4 space-y-3 text-[14px] text-slate-500">
-                {col.items.map((item) => (
-                  <div key={item} className="cursor-pointer transition hover:text-slate-900">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+          <div>
+            <div className="text-[13px] font-semibold text-slate-950">Product</div>
+            <ul className="mt-4 space-y-2.5 text-[14px] text-slate-600">
+              <li><Link href="/platform" className="transition hover:text-slate-950">Platform</Link></li>
+              <li><Link href="/use-cases" className="transition hover:text-slate-950">Use cases</Link></li>
+              <li><Link href="/pricing" className="transition hover:text-slate-950">Pricing</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="text-[13px] font-semibold text-slate-950">Resources</div>
+            <ul className="mt-4 space-y-2.5 text-[14px] text-slate-600">
+              <li><Link href="/docs" className="transition hover:text-slate-950">Docs</Link></li>
+              <li><Link href="/resources" className="transition hover:text-slate-950">Resources</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="text-[13px] font-semibold text-slate-950">Account</div>
+            <ul className="mt-4 space-y-2.5 text-[14px] text-slate-600">
+              <li><Link href="/sign-in" className="transition hover:text-slate-950">Sign in</Link></li>
+              <li><Link href="/sign-up" className="transition hover:text-slate-950">Get started</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="text-[13px] font-semibold text-slate-950">Legal</div>
+            <ul className="mt-4 space-y-2.5 text-[14px] text-slate-600">
+              <li><span className="text-slate-500">Terms</span></li>
+              <li><span className="text-slate-500">Privacy Policy</span></li>
+            </ul>
+          </div>
         </div>
 
-        <div className="pb-2 text-center text-[12px] text-slate-400">
+        <div className="mt-12 border-t border-slate-200/60 pt-6 text-center text-[12px] text-slate-400">
           © 2025 Tensor-Bot. All rights reserved.
         </div>
       </Container>

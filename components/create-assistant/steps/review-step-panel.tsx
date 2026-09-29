@@ -37,7 +37,7 @@ export function ReviewStepPanel() {
           <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
             <div className="text-sm font-semibold text-slate-950">Assistant Summary</div>
             <div className="mt-3 grid gap-3 sm:grid-cols-3">
-              <SummaryStat label="Website" value={state.websiteUrl ? "Connected" : "—"} />
+              <SummaryStat label="Website" value={state.websiteUrl ? "Connected" : "Not set"} />
               <SummaryStat label="Sources Ready" value={String(completedSources.length)} />
               <SummaryStat label="Live Data" value={state.liveData.enabled ? "Active" : "Disabled"} />
             </div>

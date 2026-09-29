@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { AuthShell } from "@/components/auth/auth-shell";
+import { GoogleButton } from "@/components/auth/google-button";
 import { signInAction, type AuthState } from "@/actions/auth";
 
 const initialState: AuthState = {
@@ -10,20 +12,31 @@ const initialState: AuthState = {
   success: null,
 };
 
-export default function SignInPage() {
+function SignInForm() {
   const [state, formAction, pending] = useActionState(signInAction, initialState);
+  const searchParams = useSearchParams();
+  const urlError = searchParams.get("error");
+
+  const displayError = state.error || urlError;
 
   return (
-    <AuthShell
-      title="Welcome back"
-      subtitle="Sign in to continue to your Tensor-Bot dashboard and manage your assistant."
-    >
+    <div className="space-y-6">
+      <GoogleButton label="Sign in with Google" nextUrl="/dashboard" />
+
+      <div className="relative flex items-center justify-center">
+        <div className="w-full border-t border-slate-200" />
+        <span className="absolute bg-[#f9fafb] px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+          or continue with email
+        </span>
+      </div>
+
       <form action={formAction} className="space-y-5">
         <div className="space-y-2">
           <label className="text-[13px] font-medium text-slate-700">Email</label>
           <input
             name="email"
             type="email"
+            required
             placeholder="name@company.com"
             className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-[14px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#8a97ff] focus:ring-4 focus:ring-[#8a97ff]/10"
           />
@@ -34,6 +47,7 @@ export default function SignInPage() {
           <input
             name="password"
             type="password"
+            required
             placeholder="Enter your password"
             className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-[14px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#8a97ff] focus:ring-4 focus:ring-[#8a97ff]/10"
           />
@@ -53,12 +67,16 @@ export default function SignInPage() {
           </Link>
         </div>
 
-        {state.error ? (
-          <p className="text-sm text-red-500">{state.error}</p>
+        {displayError ? (
+          <div className="rounded-2xl border border-red-200/80 bg-red-50/80 p-3.5 text-center text-xs font-medium text-red-600 backdrop-blur-md">
+            {displayError}
+          </div>
         ) : null}
 
         {state.success ? (
-          <p className="text-sm text-emerald-600">{state.success}</p>
+          <div className="rounded-2xl border border-emerald-200/80 bg-emerald-50/80 p-3.5 text-center text-xs font-medium text-emerald-600 backdrop-blur-md">
+            {state.success}
+          </div>
         ) : null}
 
         <button
@@ -76,6 +94,19 @@ export default function SignInPage() {
           </Link>
         </p>
       </form>
+    </div>
+  );
+}
+
+export default function SignInPage() {
+  return (
+    <AuthShell
+      title="Welcome back"
+      subtitle="Sign in to continue to your Tensor-Bot dashboard and manage your assistant."
+    >
+      <Suspense fallback={<div className="h-64 flex items-center justify-center text-slate-400 text-sm">Loading sign in...</div>}>
+        <SignInForm />
+      </Suspense>
     </AuthShell>
   );
 }

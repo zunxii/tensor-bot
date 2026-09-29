@@ -1,39 +1,39 @@
 import { Container } from "@/components/ui/container";
-import { Database, Globe, ShoppingBag, Zap } from "lucide-react";
+import { Database, Globe, ShoppingBag, Zap, Code2, Server } from "lucide-react";
 import type { ComponentType } from "react";
 
 type LucideIcon = ComponentType<{ className?: string }>;
 
 const integrations: { name: string; icon: LucideIcon }[] = [
-  { name: "Shopify",     icon: ShoppingBag },
+  { name: "Shopify", icon: ShoppingBag },
   { name: "WooCommerce", icon: Globe },
-  { name: "Stripe",      icon: Zap },
-  { name: "MongoDB",     icon: Database },
-  { name: "PostgreSQL",  icon: Database },
-  { name: "REST API",    icon: Globe },
+  { name: "Stripe", icon: Zap },
+  { name: "MongoDB", icon: Database },
+  { name: "PostgreSQL", icon: Server },
+  { name: "REST API", icon: Code2 },
 ];
 
 export function Integrations() {
   return (
-    <section className="relative z-10">
-      <Container className="py-8 lg:py-10">
-        <div className="border-y border-slate-200/70 py-8">
-          <div className="reveal mb-5 text-center text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-400">
-            Connect with what you use
+    <section className="relative z-10 py-10">
+      <Container>
+        <div className="rounded-[28px] border border-slate-200/80 bg-white/60 p-8 shadow-[0_4px_20px_rgba(15,23,42,0.03)] backdrop-blur-md">
+          <div className="mb-6 text-center text-xs font-semibold uppercase tracking-widest text-slate-400">
+            Native integrations &amp; live data connectors
           </div>
 
-          <div className="grid grid-cols-2 gap-y-5 sm:grid-cols-3 lg:grid-cols-6">
-            {integrations.map((item, i) => {
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {integrations.map((item) => {
               const Icon = item.icon;
               return (
                 <div
                   key={item.name}
-                  className={`reveal reveal-delay-${Math.min(i + 1, 4)} flex items-center justify-center gap-2 text-[15px] font-semibold text-slate-400 transition-colors duration-200 hover:text-slate-600`}
+                  className="flex items-center justify-center gap-2.5 rounded-2xl border border-slate-200/60 bg-white px-4 py-3 text-[14px] font-semibold text-slate-800 shadow-sm transition hover:border-slate-300 hover:shadow-md"
                 >
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-[0_4px_12px_rgba(15,23,42,0.04)]">
-                    <Icon className="h-4 w-4 text-slate-400" />
+                  <div className="flex h-7 w-7 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+                    <Icon className="h-4 w-4" />
                   </div>
-                  {item.name}
+                  <span>{item.name}</span>
                 </div>
               );
             })}

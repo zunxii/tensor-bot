@@ -1,56 +1,40 @@
 import Link from "next/link";
-import { ArrowRight, Globe, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { GlassCard } from "@/components/ui/glass-card";
 
 export function CTASection() {
   return (
-    <section className="relative z-10">
-      <Container className="py-16 lg:py-24">
-        {/* Ambient blob behind the card */}
-        <div className="pointer-events-none absolute inset-x-10 bottom-10 top-10 rounded-[60px] bg-[radial-gradient(ellipse_at_center,rgba(130,150,255,0.12)_0%,rgba(255,255,255,0)_70%)] blur-3xl" />
+    <section className="relative z-10 py-16 lg:py-24">
+      <Container>
+        <div className="relative overflow-hidden rounded-[36px] border border-slate-900/90 bg-slate-950 px-8 py-16 text-center text-white shadow-[0_24px_60px_rgba(15,23,42,0.30)] sm:px-12 lg:px-16">
+          <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-indigo-500/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-violet-500/20 blur-3xl" />
 
-        <GlassCard className="reveal relative overflow-hidden px-6 py-14 text-center sm:px-10 lg:px-14">
-          {/* Floating rotated icon boxes */}
-          <div className="pointer-events-none absolute left-5 top-8 hidden rounded-2xl bg-white/80 p-3 shadow-[0_12px_35px_rgba(122,138,255,0.20)] lg:block">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#eef2ff] text-[#7888ff] rotate-[-16deg] shadow-sm">
-              <span className="text-xl font-semibold">T</span>
+          <div className="relative z-10 mx-auto max-w-2xl">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-medium text-indigo-200 backdrop-blur-md">
+              <Sparkles className="h-3.5 w-3.5" />
+              Deploy in under 5 minutes
+            </div>
+
+            <h2 className="text-[36px] font-semibold tracking-[-0.05em] text-white sm:text-[46px]">
+              Ready to launch your custom AI assistant?
+            </h2>
+
+            <p className="mx-auto mt-4 max-w-lg text-[16px] leading-7 text-slate-300">
+              Join forward-thinking businesses using Tensor-Bot to answer customer questions and increase conversion.
+            </p>
+
+            <div className="mt-8 flex justify-center">
+              <Link
+                href="/sign-up"
+                className="inline-flex h-12 items-center gap-2 rounded-full bg-white px-7 text-[14px] font-bold text-slate-950 shadow-[0_12px_30px_rgba(255,255,255,0.25)] transition hover:-translate-y-0.5 hover:bg-slate-100 active:scale-[0.98]"
+              >
+                Get started
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
-
-          <div className="pointer-events-none absolute right-6 top-7 hidden rounded-2xl bg-white/80 p-3 shadow-[0_12px_35px_rgba(122,138,255,0.20)] lg:block">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#eef2ff] text-[#7888ff] rotate-[14deg] shadow-sm">
-              <Globe className="h-5 w-5" />
-            </div>
-          </div>
-
-          <div className="pointer-events-none absolute left-[13%] bottom-6 hidden rounded-2xl bg-white/80 p-3 shadow-[0_12px_35px_rgba(122,138,255,0.20)] lg:block">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#eef2ff] text-[#7888ff] rotate-[-8deg] shadow-sm">
-              <Zap className="h-5 w-5" />
-            </div>
-          </div>
-
-          <div className="pointer-events-none absolute right-[13%] bottom-8 hidden rounded-2xl bg-white/80 p-3 shadow-[0_12px_35px_rgba(122,138,255,0.20)] lg:block">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#eef2ff] text-[#7888ff] rotate-[10deg] shadow-sm">
-              <Sparkles className="h-5 w-5" />
-            </div>
-          </div>
-
-          <h3 className="text-[34px] font-semibold tracking-[-0.05em] text-slate-950 sm:text-[44px]">
-            Ready to launch your assistant?
-          </h3>
-          <p className="mx-auto mt-4 max-w-[620px] text-[16px] leading-8 text-slate-500">
-            Join businesses that are building better customer experiences with Tensor-Bot.
-          </p>
-
-          <Link
-            href="#"
-            className="mt-8 inline-flex h-12 items-center gap-2 rounded-2xl bg-slate-950 px-6 text-[14px] font-semibold text-white shadow-[0_18px_40px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 hover:bg-slate-800"
-          >
-            Start building for free
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </GlassCard>
+        </div>
       </Container>
     </section>
   );

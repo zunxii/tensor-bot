@@ -18,6 +18,33 @@ async function getOrigin(): Promise<string> {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 }
 
+export async function signInWithGoogleAction(redirectToPath: string = "/dashboard") {
+  const supabase = await createClient();
+  const origin = await getOrigin();
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${origin}/auth/callback?next=${encodeURIComponent(redirectToPath)}`,
+      queryParams: {
+        access_type: "offline",
+        prompt: "consent",
+      },
+    },
+  });
+
+  if (error) {
+    redirect(`/sign-in?error=${encodeURIComponent(error.message)}`);
+  }
+
+  if (data?.url) {
+    redirect(data.url);
+  }
+
+  redirect("/sign-in?error=Failed+to+initialize+Google+Sign-In");
+}
+
+
 export async function signInAction(
   _: AuthState,
   formData: FormData
